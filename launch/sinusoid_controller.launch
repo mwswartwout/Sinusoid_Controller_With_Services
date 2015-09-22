@@ -1,0 +1,6 @@
+<launch>
+<node name= "minimal_controller" pkg= "minimal_nodes" type= "minimal_controller" />
+<node name= "minimal_simulator" pkg= "minimal_nodes" type= "minimal_simulator" />
+<node name= "services_commander" pkg= "Sinusoid_Controller_With_Services" type= "services_commander" />
+<node name= "commander_client" pkg= "Sinusoid_Controller_With_Services" type= "commander_client" />
+</launch>
