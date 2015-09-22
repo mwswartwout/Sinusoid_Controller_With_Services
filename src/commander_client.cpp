@@ -13,10 +13,13 @@ int main (int argc, char **argv) {
 
     while (ros::ok()) {
         std::cout << std::endl;
-        std::cout << "Are you editing amplitude or frequency?";
+        std::cout << "Are you editing amplitude or frequency? (x to quit)";
         std::cout << std::endl;
         std::cin >> type;
         std::cout << std::endl;
+        if (type.compare("x" == 0) {
+            return 0;
+        }
         std::cout << "What value would you like to set the " << type << " to?";
         std::cout << std::endl;
         std::cin >> value;
