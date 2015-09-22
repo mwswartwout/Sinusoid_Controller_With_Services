@@ -15,10 +15,12 @@ bool callback(Sinusoid_Controller_With_Services::sinecontrolRequest& request, Si
         response.set = true;
     }
     else if (type.compare("amplitude") == 0) {
+        ROS_INFO("Received amplitude %f", request.value);
         amplitude = request.value;
         response.set = true;
     }
     else {
+        ROS_INFO("Request did not contain a valid type (amplitude or frequency)");
         response.set = false;
     }
 
