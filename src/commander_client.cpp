@@ -17,7 +17,7 @@ int main (int argc, char **argv) {
         std::cout << std::endl;
         std::cin >> type;
         std::cout << std::endl;
-        if (type.compare("x" == 0) {
+        if (type.compare("x") == 0) {
             return 0;
         }
         std::cout << "What value would you like to set the " << type << " to?";
