@@ -10,6 +10,7 @@ bool callback(Sinusoid_Controller_With_Services::sinecontrolRequest& request, Si
     std::string type(request.type);
     
     if (type.compare("frequency") == 0) {
+        ROS_INFO("Received frequency %f", request.value);
         frequency = request.value;
         response.set = true;
     }
@@ -37,12 +38,16 @@ int main(int argc, char **argv) {
     double sine; // sine output
     std_msgs::Float64 output; // message wrapper for sine output
 
-    while (ros::ok()) {
-        sine = amplitude * sin(2*pi*frequency*t); // Calculate sine value
-        output.data = sine; // Store sine value in proper message format
-        command_publisher.publish(output); // Publish value to vel_cmd topic
-        t += dt; // Increment t by timeset dt
-        ros::spinOnce();
-        naptime.sleep();
-    }
+    ROS_INFO("Ready to set amplitude and frequency");
+    ros::spin();
+    
+    return 0;
+//    while (ros::ok()) {
+//        sine = amplitude * sin(2*pi*frequency*t); // Calculate sine value
+//        output.data = sine; // Store sine value in proper message format
+//        command_publisher.publish(output); // Publish value to vel_cmd topic
+//        t += dt; // Increment t by timeset dt
+//        ros::spinOnce();
+//        naptime.sleep();
+//    }
 }
