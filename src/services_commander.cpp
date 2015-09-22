@@ -21,6 +21,8 @@ bool callback(Sinusoid_Controller_With_Services::sinecontrolRequest& request, Si
     else {
         response.set = false;
     }
+
+    return true;
 }
 
 int main(int argc, char **argv) {
