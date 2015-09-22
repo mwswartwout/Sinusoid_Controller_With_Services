@@ -3,24 +3,24 @@
 #include <math.h>
 #include <Sinusoid_Controller_With_Services/sinecontrol.h>
 
-double amplitude;
+double amplitude; // Global so that callback can access them
 double frequency;
 
 bool callback(Sinusoid_Controller_With_Services::sinecontrolRequest& request, Sinusoid_Controller_With_Services::sinecontrolResponse& response) {
     std::string type(request.type);
     
-    if (type.compare("frequency") == 0) {
+    if (type.compare("frequency") == 0) { // If frequency is received
         ROS_INFO("Received frequency %f", request.value);
-        frequency = request.value;
+        frequency = request.value; // Set frequency to value in request
         response.set = true;
     }
-    else if (type.compare("amplitude") == 0) {
+    else if (type.compare("amplitude") == 0) { // If amplitude is receieved
         ROS_INFO("Received amplitude %f", request.value);
-        amplitude = request.value;
+        amplitude = request.value; // Set amplitude to value in request
         response.set = true;
     }
     else {
-        ROS_INFO("Request did not contain a valid type (amplitude or frequency)");
+        ROS_INFO("Request did not contain a valid type (amplitude or frequency)"); // Error if type was not valid
         response.set = false;
     }
 
@@ -49,7 +49,7 @@ int main(int argc, char **argv) {
         output.data = sine; // Store sine value in proper message format
         command_publisher.publish(output); // Publish value to vel_cmd topic
         t += dt; // Increment t by timeset dt
-        ros::spinOnce();
-        naptime.sleep();
+        ros::spinOnce(); // Spin once to get any callbacks that have accumulated
+        naptime.sleep(); // Then sleep to keep updating to specified interval
     }
 }

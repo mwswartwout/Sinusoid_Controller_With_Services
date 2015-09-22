@@ -1,0 +1,4 @@
+Behavior in this assignment is identical to the previous with the exception
+that the amplitude and frequency default to 0 and then you must enter the
+desired amplitude and frequency into the service client which then communicates
+with the service server to set these.
