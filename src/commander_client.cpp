@@ -30,11 +30,11 @@ int main (int argc, char **argv) {
 
         if (client.call(message)) {
            if (message.response.set) {
-                std::cout << "The " << message.request.type << " was set to " << message.request.value;
+                ROS_INFO( "The %s was set to %f" , message.request.type.c_str(), message.request.value);
                 std::cout << std::endl;
             }
             else {
-                std::cout << message.request.type << " was an invalid type and could not be set";
+                ROS_INFO( "%s was an invalid type and could not be set", message.request.type.c_str());
                 std::cout << std::endl;
             }
         }
